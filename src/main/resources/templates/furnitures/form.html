@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/modify a furniture</title>
+    <link th:replace="~{furnitures/list::bootstrapImport}">
+</head>
+<body>
+<!--<nav th:replace="~{homePage::navbar}"></nav>-->
+<main class="container">
+    <h1>Add/modify a furniture</h1>
+    <!--si id existant -> url update, sinon -> url save -->
+    <form th:action="${furniture.getId()} == null ? @{/furnitures/create} : @{/furnitures/update/{id}(id=${furniture.getId()})}"
+          method="post" th:object="${furniture}">
+        <input th:field="*{id}" hidden>
+        <div class="mb-3">
+            <label class="form-label" for="name">Furniture name</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">Furniture description</label>
+            <input class="form-control" type="text" id="description" th:field="*{description}">
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="price">Furniture price</label>
+            <input class="form-control" type="text" id="price" th:field="*{price}">
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="stock">Furniture stock</label>
+            <input class="form-control" type="text" id="stock" th:field="*{stock}">
+            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</main>
+</body>
+</html>
