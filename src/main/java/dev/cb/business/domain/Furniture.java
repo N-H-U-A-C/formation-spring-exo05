@@ -12,6 +12,7 @@ public class Furniture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "furnitureId")
     private UUID id;
     @NotBlank
     private String name;

@@ -27,7 +27,7 @@
         <td th:text="${cartItem.getFurniture().getName()}"></td>
         <td th:text="${cartItem.getFurniture().getPrice()}"></td>
         <td th:text="${cartItem.getQuantity()}"></td>
-        <td>TODO total price</td>
+        <td th:text="${cartItem.getFurniture().getPrice() * cartItem.getQuantity()}"></td>
         <td><a th:href="@{/cartitems/delete/{id}(id=${cartItem.getId()})}" class="btn btn-outline-info">Delete</a></td>
         </tbody>
     </table>

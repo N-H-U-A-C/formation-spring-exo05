@@ -2,6 +2,7 @@ package dev.cb.business.service;
 
 import dev.cb.business.domain.Furniture;
 import dev.cb.repository.FurnitureRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class FurnitureService {
     }
 
     public List<Furniture> getAll() {
-        return furnitureRepository.findAll();
+        return furnitureRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Optional<Furniture> getById(UUID id) {
