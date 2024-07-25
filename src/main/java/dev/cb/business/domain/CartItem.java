@@ -13,15 +13,18 @@ public class CartItem {
     private int quantity;
 
     @ManyToOne
+    @JoinColumn(name = "furniture_id")
     private Furniture furniture;
 
     public CartItem() {
     }
 
-    public CartItem(UUID id, int quantity, Furniture furniture) {
-        this.id = id;
-        this.quantity = quantity;
+    public CartItem(Furniture furniture) {
         this.furniture = furniture;
+    }
+
+    public void updateQuantity(int quantity) {
+        this.quantity += quantity;
     }
 
     public UUID getId() {

@@ -10,14 +10,13 @@
 <body>
 <header>
     <nav th:block th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex justify-content-end">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/itemcarts}">Cart</a>
+                <a class="navbar-brand" th:href="@{/cartitems}">Cart</a>
             </div>
         </div>
     </nav>
 </header>
-<!--<nav th:replace="~{homePage::navbar}"></nav>-->
 <main class="container">
     <h1>List all Furnitures</h1>
     <table class="table" th:unless="${furnitures.isEmpty()}">
@@ -37,7 +36,7 @@
         <td th:text="${furniture.getDescription()}"></td>
         <td th:text="${furniture.getPrice()}"></td>
         <td th:text="${furniture.getStock()}"></td>
-        <!--        <td><a th:href="@{/furnitures/update/{id}(id=${furniture.getId()})}" class="btn btn-outline-info">Add to cart</a></td>-->
+                <td><a th:href="@{/cartitems/addtocart/{id}(id=${furniture.getId()})}" class="btn btn-outline-info">Add to cart</a></td>
                 <td><a th:href="@{/furnitures/update/{id}(id=${furniture.getId()})}" class="btn btn-outline-info">Update</a></td>
                 <td><a th:href="@{/furnitures/delete/{id}(id=${furniture.getId()})}" class="btn btn-outline-info">Delete</a></td>
         </tbody>

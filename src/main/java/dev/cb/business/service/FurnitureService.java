@@ -25,12 +25,7 @@ public class FurnitureService {
         return furnitureRepository.findById(id);
     }
 
-    public Furniture create(Furniture furniture) {
-        furniture.setId(UUID.randomUUID());
-        return furnitureRepository.save(furniture);
-    }
-
-    public Furniture update(Furniture furniture) {
+    public Furniture createOrUpdate(Furniture furniture) {
         return furnitureRepository.save(furniture);
     }
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +22,9 @@ public class Furniture {
     @Min(0)
     private int stock;
 
+    @OneToMany(mappedBy = "furniture", cascade = CascadeType.REMOVE)
+    private List<CartItem> cartItems;
+
     public Furniture() {
     }
 
@@ -30,6 +34,10 @@ public class Furniture {
         this.description = description;
         this.price = price;
         this.stock = stock;
+    }
+
+    public void updateStock(int quantity) {
+        this.stock += quantity;
     }
 
     public UUID getId() {

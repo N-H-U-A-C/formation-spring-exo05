@@ -21,6 +21,12 @@ public class FurnitureController {
         this.furnitureService = furnitureService;
     }
 
+    @GetMapping
+    public String getAll(Model model) {
+        model.addAttribute("furnitures", furnitureService.getAll());
+        return "/furnitures/list";
+    }
+
     @GetMapping("/create")
     public String getSaveForm(Model model) {
         model.addAttribute("furniture", new Furniture());
@@ -30,17 +36,11 @@ public class FurnitureController {
     @PostMapping("/create")
     public String save(@Valid @ModelAttribute Furniture furniture, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            furnitureService.create(furniture);
+            furnitureService.createOrUpdate(furniture);
             return "redirect:/furnitures";
         } else {
             return "furnitures/form";
         }
-    }
-
-    @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("furnitures", furnitureService.getAll());
-        return "/furnitures/list";
     }
 
     @GetMapping("/update/{id}")
@@ -54,7 +54,7 @@ public class FurnitureController {
     @PostMapping("/update/{id}")
     public String upgrade(@Valid @ModelAttribute Furniture furniture, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            furnitureService.update(furniture);
+            furnitureService.createOrUpdate(furniture);
             return "redirect:/furnitures";
         } else {
             return "furnitures/form";

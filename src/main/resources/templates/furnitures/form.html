@@ -33,8 +33,10 @@
             <input class="form-control" type="text" id="stock" th:field="*{stock}">
             <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
     </form>
+    <a th:href="@{/furnitures}" class="btn btn-outline-info">Cancel</a>
+
 </main>
 </body>
 </html>

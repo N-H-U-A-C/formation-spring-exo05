@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List all item carts</title>
+    <link th:replace="~{/furnitures/list::bootstrapImport}">
+</head>
+<body>
+<header>
+    <nav th:replace="~{/furnitures/list::navbar}"></nav>
+</header>
+<main class="container">
+    <h1>Cart</h1>
+    <table class="table" th:unless="${cartItems.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Furniture name</th>
+            <th scope="col">Furniture price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total price</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody th:each="cartItem : ${cartItems}">
+        <td th:text="${cartItem.getFurniture.getId()}"></td>
+        <td th:text="${cartItem.getFurniture().getName()}"></td>
+        <td th:text="${cartItem.getFurniture().getPrice()}"></td>
+        <td th:text="${cartItem.getQuantity()}"></td>
+        <td>TODO total price</td>
+        <td><a th:href="@{/cartitems/delete/{id}(id=${cartItem.getId()})}" class="btn btn-outline-info">Delete</a></td>
+        </tbody>
+    </table>
+    <p th:if="${cartItems.isEmpty()}">No cart item.</p>
+    <a th:href="@{/cartitems/delete}" class="btn btn-outline-info">Delete cart</a>
+    <a th:href="@{/furnitures}" class="btn btn-outline-info">Return to furnitures list</a>
+</main>
+</body>
+</html>
